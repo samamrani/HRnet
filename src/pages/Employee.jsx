@@ -1,6 +1,6 @@
 import '../styles/main.scss';
 
-function CreateEmployee(){
+function Employee(){
 
     return(
       <>
@@ -9,4 +9,4 @@ function CreateEmployee(){
     )
 }
 
-export default CreateEmployee;
+export default Employee;
