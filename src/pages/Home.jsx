@@ -1,4 +1,4 @@
-import logo from '../assets/img/Capture.PNG';
+import logo from '../assets/img/logo.PNG';
 import '../styles/main.scss';
 
 function Home() {
