@@ -1,7 +1,14 @@
 @import 'base/base';
 
-@import 'layout/header';
+@import 'components/alert';
+@import 'components/dateField';
+@import 'components/inputField';
+@import 'components/selectField';
+
 @import 'layout/footer';
+@import 'layout/header';
 @import 'layout/mainLayout';
 
+@import 'pages/createEmployee';
+@import 'pages/employeeList';
 @import 'pages/home';
