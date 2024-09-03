@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { NavLink } from 'react-router-dom'; 
 
@@ -11,21 +9,17 @@ function Header() {
       <nav>
         <div className="nav-links-container">
           <NavLink to="/" className="nav-links">
-            Accueil
+            Home
           </NavLink>
-          <NavLink to="/employee" className="nav-links">
-            Créer un employé
+          <NavLink to="/create-employee" className="nav-links">
+            Create Employee
           </NavLink>
-          <NavLink to="/liste" className="nav-links">
-            Liste des employés
-          </NavLink>
-          <NavLink to="/modale" className="nav-links">
-            Modales
+          <NavLink to="/employee-list" className="nav-links">
+            Employee List
           </NavLink>
         </div>
       </nav>
     </header>
-    
   );
 }
 
