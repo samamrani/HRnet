@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
 import moment from 'moment';
-
 import { useDispatch } from 'react-redux';
 import { addEmployee } from '../redux/employesSlice';
-
 import { states } from '../data/states'; 
 import { departements } from '../data/departement'; 
-
 import Alert from '../components/Alert';
 import InputField from '../components/InputField';
 import SelectField from '../components/SelectField';
 import DateField from '../components/DateField';
-import { setAlert } from '../redux/alertSlice';
 
 import '../styles/main.scss';
 
 function CreateEmployee() {
+    // Déclaration des états pour chaque champ du formulaire
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
@@ -25,14 +22,15 @@ function CreateEmployee() {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [zipCode, setZipCode] = useState('');
-
+    const [message, setMessage] = useState('');
+    // Récupération de la fonction dispatch de Redux
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        // Création d'un nouvel employé avec les données du formulaire
         const newEmployee = {
-            id: Date.now(),
             firstName,
             lastName,
             dateOfBirth: moment(dateOfBirth).format('DD/MM/YYYY'),
@@ -43,18 +41,11 @@ function CreateEmployee() {
             state,
             zipCode,
         };
-
+        // Dispatch de l'action pour ajouter un employé
         dispatch(addEmployee(newEmployee));
 
-        // Save employees in localStorage
-        const storedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
-        storedEmployees.push(newEmployee);
-        localStorage.setItem('employees', JSON.stringify(storedEmployees));
-
-        // Trigger a success alert
-        dispatch(setAlert({ message: 'Employee created successfully!', type: 'success' }));
-    
-        // Reset the form after submission
+        setMessage('Employee created successfully!');
+        // Réinitialisation des champs du formulaire
         setFirstName('');
         setLastName('');
         setDateOfBirth('');
@@ -66,9 +57,13 @@ function CreateEmployee() {
         setZipCode('');
     };
 
+    const handleClearMessage = () => {
+        setMessage('');
+    };
+
     return (
         <>
-            <Alert />
+          {message && <Alert message={message} clear={handleClearMessage} />}
             <form onSubmit={handleSubmit}>
                 <InputField
                     id="first-name"

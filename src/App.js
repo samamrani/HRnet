@@ -8,18 +8,13 @@ import EmployeeListe from './pages/EmployeeList.jsx';
 
 
 function App() {
-  const [employees, setEmployees] = useState([]);
-
-  const addEmployee = (employee) => {
-    setEmployees([...employees, employee]);
-};
   return (
     <Router>
         <MainLayout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/create-employee" element={<CreateEmployee addEmployee={addEmployee} />} />
-          <Route path="/employee-list" element={<EmployeeListe addEmployee={addEmployee} />} />
+          <Route path="/create-employee" element={<CreateEmployee />} />
+          <Route path="/employee-list" element={<EmployeeListe />} />
         </Routes>
         </MainLayout>
     </Router>

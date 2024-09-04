@@ -1,20 +1,14 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { clearAlert } from '../redux/alertSlice';
 import '../styles/main.scss';
 
-function Alert() {
-    const { message, type } = useSelector((state) => state.alert);
-    const dispatch = useDispatch();
-
-    if (!message) return null;
-
+function Alert({message, clear}) {
+  
     return (
         <>
-        <div className="alert-dark" onClick={() => dispatch(clearAlert())}></div>
-        <div className={`alert ${type}`}>
+        <div className="alert-dark" onClick={clear}></div>
+        <div className='alert'>
             {message}
-            <button onClick={() => dispatch(clearAlert())}>X</button>
+            <button onClick={clear}>X</button>
         </div>
     </>
     );

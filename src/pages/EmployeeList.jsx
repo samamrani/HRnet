@@ -1,16 +1,9 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { addEmployee } from '../redux/employesSlice';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import '../styles/main.scss';
 
 function EmployeeList() {
-    const dispatch = useDispatch();
-    const employes = useSelector((state) => state.employes.employes);
-
-    useEffect(() => {
-        const storedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
-        storedEmployees.forEach((employee) => dispatch(addEmployee(employee)));
-    }, [dispatch]);
+    const employes = useSelector((state) => state.employes);
 
     return (
         <div>
