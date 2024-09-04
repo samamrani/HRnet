@@ -8,6 +8,7 @@ import Alert from '../components/Alert';
 import InputField from '../components/InputField';
 import SelectField from '../components/SelectField';
 import DateField from '../components/DateField';
+import { useNavigate } from 'react-router-dom';
 
 import '../styles/main.scss';
 
@@ -25,7 +26,7 @@ function CreateEmployee() {
     const [message, setMessage] = useState('');
     // Récupération de la fonction dispatch de Redux
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -33,8 +34,8 @@ function CreateEmployee() {
         const newEmployee = {
             firstName,
             lastName,
-            dateOfBirth: moment(dateOfBirth).format('DD/MM/YYYY'),
-            startDate: moment(startDate).format('DD/MM/YYYY'),
+             dateOfBirth: moment(dateOfBirth).format('MM/DD/YYYY'),
+            startDate: moment(startDate).format('MM/DD/YYYY'),
             departement,
             street,
             city,
@@ -59,6 +60,7 @@ function CreateEmployee() {
 
     const handleClearMessage = () => {
         setMessage('');
+        navigate('/employee-list');
     };
 
     return (

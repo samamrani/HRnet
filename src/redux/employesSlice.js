@@ -8,15 +8,14 @@ const employesSlice = createSlice({
             state.push({ ...payload, id: nanoid() }); 
             localStorage.setItem('employees', JSON.stringify(state)); 
         },
-        updateEmployee: (state, { payload }) => {
-            const index = state.findIndex(employee => employee.id === payload.id);
-            if (index !== -1) {
-                state[index] = { ...state[index], ...payload };
-                localStorage.setItem('employees', JSON.stringify(state));
-            }
+       
+        deleteEmployee: (state, { payload }) => {
+            const newState = state.filter(employee => employee.id !== payload);
+            localStorage.setItem('employees', JSON.stringify(newState));
+            return newState;
         },
     },
 });
 
-export const { addEmployee, updateEmployee } = employesSlice.actions;
+export const { addEmployee, updateEmployee, deleteEmployee } = employesSlice.actions;
 export default employesSlice.reducer;

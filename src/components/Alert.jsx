@@ -5,11 +5,13 @@ function Alert({message, clear}) {
   
     return (
         <>
-        <div className="alert-dark" onClick={clear}></div>
+        <div className="alert-clear" onClick={clear}></div>
         <div className='alert'>
             {message}
-            <button onClick={clear}>X</button>
-        </div>
+            <button onClick={clear}>X</button>     
+        </div>    
+
+        
     </>
     );
 };
