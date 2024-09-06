@@ -4,14 +4,12 @@ const Modal = ({ isOpen, onClose, children }) => {
   // Fermer la modale avec la touche 'Esc'
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
+      if (e.key === 'Escape') { 
         onClose();
       }
     };
     if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown);
-    } else {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.addEventListener('keydown', handleKeyDown);  
     }
 
     return () => document.removeEventListener('keydown', handleKeyDown);
@@ -23,7 +21,7 @@ const Modal = ({ isOpen, onClose, children }) => {
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button onClick={onClose}>X</button>
+        <button className="modal-close" onClick={onClose}>X</button>
         {children}
       </div>
     </div>

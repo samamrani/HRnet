@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
-import moment from 'moment';
 import { useDispatch } from 'react-redux';
+import moment from 'moment';
 import { addEmployee } from '../redux/employesSlice';
 import { states } from '../data/states'; 
-import { departements } from '../data/departement'; 
-import InputField from '../components/InputField';
-import SelectField from '../components/SelectField';
-import DateField from '../components/DateField';
-import '../styles/main.scss';
+import { departements } from '../data/departement';
+import { TextField, Button, MenuItem, Grid, Typography } from '@mui/material';
 
-function CreateEmployee({ onClose }) { 
+/**
+ * Composant pour créer un nouvel employé.
+ *
+ * @param {Object} props - Les propriétés du composant.
+ * @param {Function} props.onClose - Fonction à appeler pour fermer la modale après la soumission du formulaire.
+ * @returns {JSX.Element} Le formulaire de création d'employé.
+ */
+function CreateEmployee({ onClose }) {
     // Déclaration des états pour chaque champ du formulaire
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -22,6 +26,11 @@ function CreateEmployee({ onClose }) {
     const [zipCode, setZipCode] = useState('');
     const dispatch = useDispatch();
 
+    /**
+     * Fonction pour gérer la soumission du formulaire.
+     *
+     * @param {React.FormEvent} e - L'événement de soumission du formulaire.
+     */
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -53,78 +62,143 @@ function CreateEmployee({ onClose }) {
         setZipCode('');
 
         // Fermer la modale après la soumission
-        onClose(); 
+        onClose();
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <InputField
-                id="first-name"
-                label="First Name"
-                value={firstName}
-                onChange={setFirstName}
-                required
-            />
-            <InputField
-                id="last-name"
-                label="Last Name"
-                value={lastName}
-                onChange={setLastName}
-                required
-            />
-            <DateField
-                id="date-of-birth"
-                label="Date of Birth"
-                value={dateOfBirth}
-                onChange={setDateOfBirth}
-            />
-            <DateField
-                id="start-date"
-                label="Start Date"
-                value={startDate}
-                onChange={setStartDate}
-            />
-            <div className='address'>
-                <h3>Address</h3>
-                <InputField
-                    id="street"
-                    label="Street"
-                    value={street}
-                    onChange={setStreet}
-                    required
-                />
-                <InputField
-                    id="city"
-                    label="City"
-                    value={city}
-                    onChange={setCity}
-                    required
-                />
-                <SelectField
-                    id="state"
-                    label="State"
-                    options={states.map(state => ({ value: state.abbreviation, label: state.name }))}
-                    value={state}
-                    onChange={setState}
-                    required
-                />
-                <InputField
-                    id="zip-code"
-                    label="Zip Code"
-                    value={zipCode}
-                    onChange={setZipCode}
-                    required
-                />
-            </div>
-            <SelectField
-                id="departement"
-                label="Department"
-                options={departements.map(dept => ({ value: dept.name, label: dept.name }))}
-                value={departement}
-                onChange={setDepartement}
-                required
-            />
-            <button type="submit">Save</button>
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <Typography variant="h6">Create Employee</Typography>
+                </Grid>
+
+                <Grid item xs={6}>
+                    <TextField
+                        id="first-name"
+                        label="First Name"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        fullWidth
+                        required
+                    />
+                </Grid>
+                <Grid item xs={6}>
+                    <TextField
+                        id="last-name"
+                        label="Last Name"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        fullWidth
+                        required
+                    />
+                </Grid>
+
+                <Grid item xs={6}>
+                    <TextField
+                        id="date-of-birth"
+                        label="Date of Birth"
+                        type="date"
+                        value={dateOfBirth}
+                        onChange={(e) => setDateOfBirth(e.target.value)}
+                        fullWidth
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={6}>
+                    <TextField
+                        id="start-date"
+                        label="Start Date"
+                        type="date"
+                        value={startDate}
+                        onChange={(e) => setStartDate(e.target.value)}
+                        fullWidth
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                </Grid>
+
+                <Grid item xs={12}>
+                    <Typography variant="h6">Address</Typography>
+                </Grid>
+                
+                <Grid item xs={12}>
+                    <TextField
+                        id="street"
+                        label="Street"
+                        value={street}
+                        onChange={(e) => setStreet(e.target.value)}
+                        fullWidth
+                        required
+                    />
+                </Grid>
+
+                <Grid item xs={6}>
+                    <TextField
+                        id="city"
+                        label="City"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        fullWidth
+                        required
+                    />
+                </Grid>
+
+                <Grid item xs={6}>
+                    <TextField
+                        id="state"
+                        label="State"
+                        select
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
+                        fullWidth
+                        required
+                    >
+                        {states.map((state) => (
+                            <MenuItem key={state.abbreviation} value={state.abbreviation}>
+                                {state.name}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                </Grid>
+
+                <Grid item xs={6}>
+                    <TextField
+                        id="zip-code"
+                        label="Zip Code"
+                        value={zipCode}
+                        onChange={(e) => setZipCode(e.target.value)}
+                        fullWidth
+                        required
+                    />
+                </Grid>
+
+                <Grid item xs={6}>
+                    <TextField
+                        id="departement"
+                        label="Department"
+                        select
+                        value={departement}
+                        onChange={(e) => setDepartement(e.target.value)}
+                        fullWidth
+                        required
+                    >
+                        {departements.map((dept) => (
+                            <MenuItem key={dept.name} value={dept.name}>
+                                {dept.name}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                </Grid>
+
+                <Grid item xs={12}>
+                    <Button type="submit" variant="contained" color="black" fullWidth>
+                        Save
+                    </Button>
+                </Grid>
+            </Grid>
         </form>
     );
 }

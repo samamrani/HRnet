@@ -7,13 +7,7 @@ const employesSlice = createSlice({
         addEmployee: (state, { payload }) => {
             state.push({ ...payload, id: nanoid() }); 
             localStorage.setItem('employees', JSON.stringify(state)); 
-        },
-       
-        deleteEmployee: (state, { payload }) => {
-            const newState = state.filter(employee => employee.id !== payload);
-            localStorage.setItem('employees', JSON.stringify(newState));
-            return newState;
-        },
+        }, 
     },
 });
 

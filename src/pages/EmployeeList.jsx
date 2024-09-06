@@ -4,6 +4,36 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import PaginationControls from '../components/PaginationControls';  
 import TableControls from '../components/TableControls';  
 
+const columns = [
+    {   field: "firstName",
+        label: "First Name",
+    },
+    {   field: "lastName",
+        label: "Last Name",
+    },
+    {   field: "startDate",
+        label: "Start Date",
+    },
+    {   field: "department",
+        label: "Department",
+    },
+    {   field: "dateOfBirth",
+        label: "Date of Birth",
+    },
+    {   field: "street",
+        label: "Street",
+    },
+    {   field: "city",
+        label: "City",
+    },
+    {   field: "state",
+        label: "State",
+    },
+    {   field: "zipCode",
+        label: "Zip Code",
+    },
+]
+
 function EmployeeList() {
         // Récupération des employés depuis le store Redux
     const employes = useSelector((state) => state.employes);
@@ -63,30 +93,21 @@ function EmployeeList() {
                 <Table>
                     <TableHead>
                         <TableRow className='table-row'>
-                            <TableCell>First Name</TableCell>
-                            <TableCell>Last Name</TableCell>
-                            <TableCell>Start Date</TableCell>
-                            <TableCell>Department</TableCell>
-                            <TableCell>Date of Birth</TableCell>
-                            <TableCell>Street</TableCell>
-                            <TableCell>City</TableCell>
-                            <TableCell>State</TableCell>
-                            <TableCell>Zip Code</TableCell>
+                            {columns.map((column, index) => (
+                               <TableCell key={index}>{column.label}</TableCell>  
+                            ) 
+                        )}
+                           
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {/* Affichage des employés de la page actuelle */}
                         {currentEmployees.map((employee) => (
                             <TableRow key={employee.id}>
-                                <TableCell>{employee.firstName}</TableCell>
-                                <TableCell>{employee.lastName}</TableCell>
-                                <TableCell>{employee.startDate}</TableCell>
-                                <TableCell>{employee.department}</TableCell>
-                                <TableCell>{employee.dateOfBirth}</TableCell>
-                                <TableCell>{employee.street}</TableCell>
-                                <TableCell>{employee.city}</TableCell>
-                                <TableCell>{employee.state}</TableCell>
-                                <TableCell>{employee.zipCode}</TableCell>
+                                   {columns.map((column, index) => (
+                               <TableCell key={index}>{employee[column.field]}</TableCell>  
+                            ) 
+                        )}          
                             </TableRow>
                         ))}
                     </TableBody>
