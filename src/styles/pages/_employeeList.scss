@@ -1,0 +1,41 @@
+.currentEmployees {
+    text-align: center;
+    // margin-bottom: 20px;
+}
+
+.table-container {
+   
+   border-bottom: 2px solid black;
+
+}
+
+.table-row{
+    border-bottom: 2px solid black;
+}
+.employeeList{
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Pour les lignes impaires */
+.table-container table tbody tr:nth-child(odd) {
+    background-color: rgb(189, 209, 189);;
+}
+
+/* Pour les lignes paires */
+.table-container table tbody tr:nth-child(even) {
+    background-color: #ffffff;}
+
+ .pagination-info{
+    margin-top: 20px;
+
+ }
+ .pagination-control{
+    margin-top: -35px;
+ }
+    
+ .tableControls{
+    display: flex;
+    flex-direction: row;
+ }
+ 

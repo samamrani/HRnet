@@ -1,0 +1,32 @@
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 20px; 
+}
+
+.form-control {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    
+}
+
+.form-control span {
+    margin: 0 5px; 
+}
+
+.form-control select,
+.form-control input {
+    max-width: 100px; 
+}
+
+
+.menu-item-custom.Mui-selected {
+  color: white;
+    background-color: rgb(73, 162, 235) !important; 
+}
+
+.menu-item-custom:hover {
+    background-color: rgb(73, 162, 235) !important; 
+}
