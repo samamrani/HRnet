@@ -1,8 +1,22 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+ 
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import PaginationControls from '../components/PaginationControls';  
 import TableControls from '../components/TableControls';  
+
+/**
+ * Composant EmployeeList affichant une liste d'employés avec des fonctionnalités de filtrage,
+ * pagination et contrôle du nombre d'employés par page.
+ * 
+ * Ce composant récupère les employés depuis le store Redux et permet de filtrer les résultats
+ * en fonction du terme de recherche, de paginer les résultats, et de changer le nombre
+ * d'employés affichés par page.
+ * 
+ * @component
+ * @returns {React.ReactElement} Le composant EmployeeList affichant la liste des employés.
+ * 
+ */
 
 const columns = [
     {   field: "firstName",
@@ -76,6 +90,7 @@ function EmployeeList() {
         setCurrentPage(1); 
     };
 
+    
     return (
         <div className='employeeList'>
             <h2 className='currentEmployees'>Current Employees</h2>
